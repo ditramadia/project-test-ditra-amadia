@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 
 import navigation from "@data/navigation";
 
-import NavItemMobile from "@components/navigation/NavItemMobile";
+import NavItemSmall from "@components/navigation/NavItemSmall";
 
-interface NavbarProps {
+interface NavListSmallProps {
   active: string
 };
 
-const NavListMobile = (props: NavbarProps) => {
+const NavListSmall = (props: NavListSmallProps) => {
   const { active } = props;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const NavListMobile = (props: NavbarProps) => {
 
   return (
     <div className="lg:hidden">
-      <div className="relative z-20 w-[36px] h-[28px] flex flex-col justify-between lg:hidden" onClick={handleToggleOpen}>
+      <div className="relative z-20 w-[36px] h-[28px] flex flex-col justify-between cursor-pointer lg:hidden" onClick={handleToggleOpen}>
         <div className={`w-full h-[4px] bg-neutral-100 rounded-full transition-fast ${isOpen && 'rotate-45 translate-y-[12px]'}`} />
         <div className={`w-full h-[4px] bg-neutral-100 rounded-full transition-fast ${isOpen && 'scale-0 opacity-0'}`} />
         <div className={`w-full h-[4px] bg-neutral-100 rounded-full transition-fast ${isOpen && '-rotate-45 -translate-y-[12px]'}`} />
@@ -39,7 +39,7 @@ const NavListMobile = (props: NavbarProps) => {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.15, delay: index * 0.06, ease: 'easeInOut'}}
             >
-              <NavItemMobile key={index} title={item.title} link={item.link} active={item.title === active} />
+              <NavItemSmall key={index} title={item.title} link={item.link} active={item.title === active} />
             </motion.div>
           ))
         }
@@ -48,4 +48,4 @@ const NavListMobile = (props: NavbarProps) => {
   );
 };
 
-export default NavListMobile;
+export default NavListSmall;
