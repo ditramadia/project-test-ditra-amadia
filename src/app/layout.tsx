@@ -4,6 +4,7 @@ import '@fontsource/poppins';
 
 import "./globals.css";
 import "@public/styles/typescale.css";
+import "@public/styles/transition.css";
 
 export const metadata: Metadata = {
   title: "Project Test",

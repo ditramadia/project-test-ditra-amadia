@@ -1,3 +1,5 @@
+'use client';
+
 import Navbar from "@components/navigation/Navbar";
 
 const Ideas = () => {

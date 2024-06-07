@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import SuitMediaLogo from "@public/images/logo-suitmedia.png";
+import NavListMobile from "./NavListMobile";
 
 const navigation = [
   {
@@ -38,11 +39,7 @@ const Navbar = () => {
           <Image src={SuitMediaLogo} alt="Suit Media Logo" width={140} />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <div className="w-[36px] h-[4px] bg-neutral-100 rounded-full" />
-          <div className="w-[36px] h-[4px] bg-neutral-100 rounded-full" />
-          <div className="w-[36px] h-[4px] bg-neutral-100 rounded-full" />
-        </div>
+        <NavListMobile />
 
       </div>
     </nav>
