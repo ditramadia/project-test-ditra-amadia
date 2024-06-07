@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      color: {
+      colors: {
         "primary-500": "#FF6600",
         "neutral-100": "#FDFEFF",
         "neutral-400": "#B0B5BB",

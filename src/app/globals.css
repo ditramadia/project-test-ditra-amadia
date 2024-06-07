@@ -7,3 +7,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@layer base {
+  .screen-container {
+    @apply w-11/12 mx-auto;
+  }
+}
