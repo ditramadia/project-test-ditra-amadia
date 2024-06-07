@@ -20,10 +20,10 @@ const PostList = () => {
   return (
     <div className="screen-container mt-12">
 
-      <div className="flex flex-col-reverse gap-4">
+      <div className="flex flex-col-reverse gap-4 lg:flex-row lg:items-center lg:justify-between">
         <p className="body-md text-neutral-900">Showing 1-10 of 100</p>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 lg:flex-row lg:gap-10">
           <div className="flex items-center gap-2">
             <label className="body-md text-neutral-900">Show per page:</label>
             <Dropdown
