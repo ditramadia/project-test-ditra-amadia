@@ -14,9 +14,9 @@ const Banner = () => {
   }, [])
 
   return (
-    <div className="relative w-full h-[420px]">
+    <div className="relative w-full h-[420px] lg:h-[520px]">
       <div 
-        className="absolute w-full h-full bg-cover bg-center bg-no-repeat transform skew-y-[-12deg] origin-top-left" 
+        className="absolute w-full h-full bg-cover bg-center bg-no-repeat transform skew-y-[-12deg] origin-top-left lg:skew-y-[-6deg]" 
         style={{backgroundImage: "url('"+bannerImage+")"}} 
       >
         <div className="absolute inset-0 bg-scrim/70" />
