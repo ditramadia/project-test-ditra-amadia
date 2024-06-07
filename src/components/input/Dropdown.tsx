@@ -1,3 +1,7 @@
+import { useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+
 interface dataType {
   value: string;
   label: string;
@@ -12,21 +16,31 @@ interface DropdownProps {
 const Dropdown = (props: DropdownProps) => {
   const { name, data, onChange } = props;
 
-  // TODO: Replace the chevron with a caret from font awesome
+  const ref = useRef<HTMLSelectElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <select
-      name={name}
-      className="px-2 py-1 bg-transparent border-2 border-border rounded-full body-md text-neutral-900 cursor-pointer lg:px-4 lg:pr-10"
-      onChange={onChange}
+    <div 
+      className={`relative border-2 ${isFocused ? 'border-neutral-900' : 'border-border'} rounded-full flex justify-between items-center cursor-pointer`}
     >
-      {
-        data.map((item, index) => {
-          return (
-            <option key={index} value={item.value}>{item.label}</option>
-          );
-        })
-      }
-    </select>
+      <select
+        ref={ref}
+        name={name}
+        className="appearance-none outline-none px-4 pr-8 py-1 bg-transparent body-md text-neutral-900 cursor-pointer lg:px-4 lg:pr-12"
+        onChange={onChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      >
+        {
+          data.map((item, index) => {
+            return (
+              <option key={index} value={item.value}>{item.label}</option>
+            );
+          })
+        }
+      </select>
+      <FontAwesomeIcon icon={faCaretDown} className="absolute right-2 text-neutral-900 body-md pointer-events-none" />
+    </div>
   );
 };
 
