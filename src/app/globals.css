@@ -7,3 +7,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@layer base {
+  .screen-container {
+    @apply max-w-[1200px] w-11/12 mx-auto lg:w-10/12;
+  }
+}
