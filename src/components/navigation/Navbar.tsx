@@ -34,7 +34,7 @@ const Navbar = (props: NavbarProps) => {
   }, [lastScrollY])
 
   return (
-    <nav className={`fixed z-50 inset-x-0 top-0 w-full h-fit transition-fast ${lastScrollY === 0 ? 'bg-primary-500' : isVisible ? 'bg-primary-500/60 hover:bg-primary-500' : 'bg-primary-500/0 -translate-y-full pointer-events-none'}`}>
+    <nav className={`fixed z-50 inset-x-0 top-0 w-full h-fit transition-fast ${lastScrollY === 0 ? 'bg-primary-500' : isVisible ? 'bg-primary-500/60 hover:bg-primary-500' : 'lg:bg-primary-500/0 lg:-translate-y-full lg:pointer-events-none'}`}>
       <div className="screen-container py-2 flex justify-between items-center">
 
         <div className="relative z-50">
