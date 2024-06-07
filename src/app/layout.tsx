@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+
+import '@fontsource/poppins';
+
 import "./globals.css";
+import "@public/styles/typescale.css";
 
 export const metadata: Metadata = {
   title: "Project Test",
