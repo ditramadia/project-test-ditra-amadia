@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import navigation from "@data/navigation";
 
@@ -11,7 +12,7 @@ interface NavbarProps {
 const NavListMobile = (props: NavbarProps) => {
   const { active } = props;
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleToggleOpen = () => {
     setIsOpen((prev) => !prev);
@@ -31,7 +32,15 @@ const NavListMobile = (props: NavbarProps) => {
       >
         {
           navigation.map((item, index) => (
-            <NavItemMobile key={index} title={item.title} link={item.link} active={item.title === active} />
+            <motion.div
+              key={index}
+              className="w-full"
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.15, delay: index * 0.06, ease: 'easeInOut'}}
+            >
+              <NavItemMobile key={index} title={item.title} link={item.link} active={item.title === active} />
+            </motion.div>
           ))
         }
       </div>

@@ -1,6 +1,12 @@
+'use client';
+
+import Navbar from "@components/navigation/Navbar";
+
 const About = () => {
   return (
-    <div>About</div>
+    <main className="max-w-screen h-[200vh]">
+      <Navbar active="About"/>
+    </main>
   );
 };
 
