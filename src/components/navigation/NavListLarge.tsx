@@ -10,7 +10,7 @@ const NavListLarge = (props: NavListLargeProps) => {
   const { active } = props;
   
   return (
-    <div className="hidden lg:flex gap-4">
+    <div className="hidden lg:flex gap-8">
       {
         navigation.map((item, index) => (
           <NavItemLarge key={index} title={item.title} link={item.link} active={item.title === active}/>
