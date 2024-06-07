@@ -15,6 +15,7 @@ const config: Config = {
         "neutral-900": "#1F1F1F",
         "border": "#D1D6DC",
         "shadow": "#D1D6DC",
+        "scrim": "#1F1F1F",
       },
     },
   },
