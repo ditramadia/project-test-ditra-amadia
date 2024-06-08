@@ -6,4 +6,8 @@
   .transition-fast {
     @apply transition-all duration-150 ease-in-out;
   }
+
+  .transition-normal {
+    @apply transition-all duration-300 ease-in-out;
+  }
 }
