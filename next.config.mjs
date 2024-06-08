@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "assets.suitdev.com",
+        port: "",
+        pathname: "/storage/files/**",
+      },
     ],
   },
 };
