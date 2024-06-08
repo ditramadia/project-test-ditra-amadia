@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Dropdown from "@components/input/Dropdown";
+import IdeaPost from "./IdeaPost";
 
 const PostList = () => {
   const [query, setQuery] = useState({
@@ -57,6 +58,19 @@ const PostList = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
+        <IdeaPost />
       </div>
 
     </div>
