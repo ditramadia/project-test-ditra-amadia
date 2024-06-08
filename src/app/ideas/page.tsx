@@ -6,7 +6,7 @@ import PostList from "@components/post-list/PostList";
 
 const Ideas = () => {
   return (
-    <main className="max-w-screen h-[200vh]">
+    <main className="max-w-screen min-h-screen">
       <Navbar active="Ideas"/>
       <Banner />
       <PostList />

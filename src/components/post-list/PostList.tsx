@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 
 import { IdeaPostType } from "@interfaces/IdeaPostType";
 
 import Dropdown from "@components/input/Dropdown";
 import IdeaPost from "@components/post-list/IdeaPost";
+import IdeaPostLazy from "@components/post-list/IdeaPostLazy";
+import Pagination from "@components/input/Pagination";
 
 const PostList = () => {
   const [query, setQuery] = useState({
@@ -21,11 +24,12 @@ const PostList = () => {
   const [data, setData] = useState<IdeaPostType[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    window.scrollTo(0, 0);
     setQuery({
       ...query,
+      pageNumber: "1",
       [e.target.name]: e.target.value
     });
-    console.log(query);
   };
 
   useEffect(() => {
@@ -47,11 +51,10 @@ const PostList = () => {
     }
 
     fetchData();
-    console.log(data);
   }, [query]);
 
   return (
-    <div className="screen-container mt-12">
+    <div className="screen-container mt-12 pb-20">
 
       <div className="flex flex-col-reverse gap-4 lg:flex-row lg:items-center lg:justify-between">
         <p className="body-md text-neutral-900">Showing {dataInfo.showStart}-{dataInfo.showEnd} of {dataInfo.total}</p>
@@ -92,20 +95,61 @@ const PostList = () => {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
-        {
-          data.map((post) => (
-            <IdeaPost 
-              key={post.id} 
-              title={post.title}
-              dateRaw={post.published_at}
-              imageLow={post.small_image && post.small_image[0].url}
-              imageMed={post.medium_image && post.medium_image[0].url}
-              slug={post.slug}
-            />
-          ))
-        }
-      </div>
+      {
+        loading ? (
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+            {
+              Array(10).fill(0).map((_, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="animate-pulse"
+                >
+                  <IdeaPostLazy />
+                </motion.div>
+              ))
+            }
+          </div>
+        ) : !data ? (
+          <p className="h-64 mt-8 py-20 flex justify-center body-md text-neutral-400">No ideas found :(</p>
+        ) : (
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+            {
+              data.map((post, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <IdeaPost 
+                    key={post.id} 
+                    title={post.title}
+                    dateRaw={post.published_at}
+                    imageLow={post.small_image ? post.small_image[0] : undefined}
+                    imageMed={post.medium_image ? post.medium_image[0] : undefined}
+                    slug={post.slug}
+                  />
+                </motion.div>
+              ))
+            }
+          </div>
+        )
+      }
+
+      <Pagination
+        disabled={loading || !data}
+        currentPage={parseInt(query.pageNumber)}
+        totalPages={Math.ceil(dataInfo.total / parseInt(query.pageSize))}
+        changePage={(page) => {
+          window.scrollTo(0, 0);
+          setQuery({ ...query, pageNumber: page.toString()})
+        }}
+      />
 
     </div>
   );

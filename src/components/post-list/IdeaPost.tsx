@@ -1,27 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ImageType } from "@/interfaces/ImageType";
 import { parseDate } from "@/utils/dateParser";
+import { useState } from "react";
 
 interface IdeaPostProps {
   title: string,
   dateRaw: string,
-  imageLow?: string,
-  imageMed?: string,
+  imageLow?: ImageType,
+  imageMed?: ImageType,
   slug: string,
 }
 
 const IdeaPost = (props: IdeaPostProps) => {
   const { title, dateRaw, imageLow, imageMed, slug } = props;
 
+  const [img, setImg] = useState<string>(imageMed ? imageMed.url : "/images/image-not-found.jpeg");
+
   return (
     <Link href={`/ideas/${slug}`}>
       <div className="h-full bg-neutral-100 rounded-lg overflow-hidden flex flex-col shadow-lg shadow-shadow cursor-pointer group transition-normal md:hover:scale-105">
         <div className="relative w-full h-48 overflow-hidden">
           <Image 
-            src={imageMed || imageLow || "https://via.placeholder.com/300x300"} 
+            src={img}
             alt={"Thumbnail for " + title}
+            onError={() => setImg("/images/image-not-found.jpeg")}
             fill
-            className="object-cover transition-normal scale-125 group-hover:scale-100" />
+            className="object-cover transition-normal scale-125 group-hover:scale-100" 
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL={imageLow ? imageLow.url : "/images/image-not-found.jpeg"}
+            />
         </div>
 
         <div className="p-3 lg:p-5">
