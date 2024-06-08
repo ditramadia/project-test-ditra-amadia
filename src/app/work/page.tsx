@@ -2,10 +2,12 @@
 
 import Navbar from "@components/navigation/Navbar";
 
-export default function Home() {
+const Work = () => {
   return (
     <main className="max-w-screen h-[200vh]">
-      <Navbar active=""/>
+      <Navbar active="Work"/>
     </main>
   );
-}
+};
+
+export default Work;
